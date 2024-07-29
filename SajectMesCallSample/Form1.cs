@@ -32,7 +32,7 @@ namespace SajectMesCallSample
         {
             int command = int.Parse(textBox1.Text);
             string f_data=textBox2.Text;
-           f_data= MES_Service.MesSendSample(command, f_data);
+             f_data= MES_Service.MesSendSample(command, f_data);
             richTextBox1.Text+=(f_data)+"\r";
         }
         private void button1_Click(object sender, EventArgs e)

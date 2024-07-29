@@ -51,15 +51,6 @@ namespace SajectMesCallSample
     public class MES_Service
     {
 
-        private static IntPtr AllocateMemory(int size)
-        {
-            return Marshal.AllocHGlobal(size);
-        }
-
-        private static void FreeMemory(IntPtr ptr)
-        {
-            Marshal.FreeHGlobal(ptr);
-        }
         /// <summary>
         /// 打开MES 连接
         /// </summary>
@@ -75,6 +66,12 @@ namespace SajectMesCallSample
             return MesCommand.SajetTransClose();
 
         }
+
+        /// <summary>
+        /// 字符指针转换
+        /// </summary>
+        /// <param name="strData"></param>
+        /// <returns></returns>
         private static IntPtr mallocIntptr(string strData)
         {
             Byte[] btData = System.Text.Encoding.Default.GetBytes(strData);
@@ -83,6 +80,12 @@ namespace SajectMesCallSample
             Marshal.Copy(btData, 0, m_ptr, btData.Length);
             return m_ptr;
         }
+
+        /// <summary>
+        /// 指针 int 转换
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         private static IntPtr mallocIntptr(int length)
         {
             IntPtr m_ptr = Marshal.AllocHGlobal(4);
@@ -103,13 +106,13 @@ namespace SajectMesCallSample
                 // transData
                 MesCommand.SajetTransData(command, initData, initLength);
                 // 獲取返回指針
-                string ss = Marshal.PtrToStringAnsi(initData);
-                int myi = Marshal.ReadInt32(initLength);
-                if (myi > ss.Length)
+                string resdata = Marshal.PtrToStringAnsi(initData);
+                int dataLen = Marshal.ReadInt32(initLength);
+                if (dataLen > resdata.Length)
                 {
-                    myi = ss.Length;
+                    dataLen = resdata.Length;
                 }
-                string receive = ss.Substring(0, myi);
+                string receive = resdata.Substring(0, dataLen);
             
                 // 釋放指針
                 Marshal.FreeHGlobal(initData);
