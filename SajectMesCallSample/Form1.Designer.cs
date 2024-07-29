@@ -60,7 +60,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(252, 21);
             this.textBox2.TabIndex = 2;
-            this.textBox2.Text = "030347;";
+            this.textBox2.Text = "21103379;";
             // 
             // button2
             // 
@@ -102,7 +102,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Saject MES Call Sample";
             this.ResumeLayout(false);
             this.PerformLayout();
 
